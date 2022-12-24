@@ -64,32 +64,36 @@ function findDay() {
     // }
 }
 
-//Заводим переменную для вывода результата
-var result = findDay();
+function updateDateTitle() {
+    console.log('updateDateTitle');
+    //Заводим переменную для вывода результата
+    var result = findDay();
 
-//Выводим результат в HTML
-document.getElementById('weekday').innerHTML = result;
+    //Выводим результат в HTML
+    document.getElementById('weekday').innerHTML = result;
 
+    //=================================================Месяц, число, год====================================================
+    //Заводим в переменные элементы DOM месяц, число, год
+    const month = document.querySelector('.month');
+    const number = document.querySelector('.number');
+    const year = document.querySelector('.year');
 
-//=================================================Месяц, число, год====================================================
-//Заводим в переменные элементы DOM месяц, число, год
-const month = document.querySelector('.month');
-const number = document.querySelector('.number');
-const year = document.querySelector('.year');
+    //Это настоящее время
+    const date = new Date();
 
-//Это настоящее время
-const day = new Date();
+    //Заводим массив с месяцами ( от 0 до 11)
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-//Заводим массив с месяцами ( от 0 до 11)
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    //Выводим месяц в HTML, обращаясь к DOM-элементу = обращаемся к массиву, к его позиции (из настоящего времени достаём номер месяца)
+    month.innerHTML = months[date.getMonth()];
+    //Выводим число в HTML, обращаясь к DOM-элементу = из настоящего времени достаём число (от 1 до 31)
+    number.innerHTML = date.getDate();
+    //Выводим год в HTML, обращаясь к DOM-элементу = из настоящего времени достаём год 
+    year.innerHTML = date.getFullYear();
+}
 
-//Выводим месяц в HTML, обращаясь к DOM-элементу = обращаемся к массиву, к его позиции (из настоящего времени достаём номер месяца)
-month.innerHTML = months[day.getMonth()];
-//Выводим число в HTML, обращаясь к DOM-элементу = из настоящего времени достаём число (от 1 до 31)
-number.innerHTML = day.getDate();
-//Выводим год в HTML, обращаясь к DOM-элементу = из настоящего времени достаём год 
-year.innerHTML = day.getFullYear();
-
+updateDateTitle();
+setInterval(updateDateTitle, 1000);
 
 //===============================================Выпадающее меню по клику=================================================
 //Создаём класс show, чтобы сделать список видимым, когда пользователь на него кликает
@@ -205,11 +209,12 @@ const seasons_styles = {
     }
 }
 
-function setSeason() {
-    const month_number = day.getMonth();
-    const day_number = day.getDate();
+function getStyleByDate(month_number, day_number) {
     let season_name;
-    if (month_number == 11 || month_number == 0 || month_number == 1) {
+    if (month_number == 11 && day_number == 25 || month_number == 0 && day_number == 1 || month_number == 0 && day_number == 7) {
+        season_name = 'christmas';
+    }
+    else if (month_number == 11 || month_number == 0 || month_number == 1) {
         season_name = 'winter';
     }
     else if (month_number == 2 || month_number == 3 || month_number == 4) {
@@ -221,12 +226,39 @@ function setSeason() {
     else if (month_number == 8 || month_number == 9 || month_number == 10) {
         season_name = 'autumn';
     }
-    else if (month_number == 11 && day_number == 25 || month_number == 0 && day_number == 1 || month_number == 0 && day_number == 7) {
-        season_name = 'christmas';
-    }
-    setStyle(season_name);
+    return season_name;
 }
 
+class StyleSelector {
+    constructor() {
+        this.autoRegime = true;
+        setInterval(() => { this.updateStyle() }, 1000);
+        this.setStyleByCurrentDate();
+    }
+
+    updateStyle() {
+        if (!this.autoRegime)
+            return;
+        this.setStyleByCurrentDate();
+    }
+
+    setStyle(styleName) {
+        if (styleName == 'auto') {
+            this.autoRegime = true;
+            return;
+        }
+        this.autoRegime = false;
+        setStyle(styleName);
+    }
+
+    setStyleByCurrentDate() {
+        const date = new Date;
+        const month_number = date.getMonth();
+        const day_number = date.getDate();
+        const season_name = getStyleByDate(month_number, day_number);
+        setStyle(season_name);
+    }
+}
 
 function setStyle(season_name) {
     setSecondsSeasonStyle(season_name);
@@ -323,41 +355,34 @@ function setCongrats(season_name) {
     };
 }
 
+let styleSelector = new StyleSelector;
 
 //Меняем фон по нажатию на кнопку меню (весна)
 let btn_spring = document.querySelector("#spring");//заводим в переменную кнопку выпадающего списка
 btn_spring.addEventListener('click', () => { //При клике меняем фон
-    setStyle('spring');
-}
-)
-
+    styleSelector.setStyle('spring');
+})
 
 //Меняем фон по нажатию на кнопку меню (лето)
 let btn_summer = document.querySelector("#summer");//заводим в переменную кнопку выпадающего списка
 btn_summer.addEventListener('click', () => {
-    setStyle('summer');
-}
-)
-
+    styleSelector.setStyle('summer');
+})
 
 //Меняем фон по нажатию на кнопку меню (осень)
 let btn_autumn = document.querySelector("#autumn");//заводим в переменную кнопку выпадающего списка
 btn_autumn.addEventListener('click', () => {
-    setStyle('autumn');
-}
-)
+    styleSelector.setStyle('autumn');
+})
 
 //Меняем фон по нажатию на кнопку меню (зима)
 let btn_winter = document.querySelector("#winter");//заводим в переменную кнопку выпадающего списка
 btn_winter.addEventListener('click', () => {
-    setStyle('winter');
-}
-)
+    styleSelector.setStyle('winter');
+})
 
 let btn_auto = document.querySelector('#auto');
 btn_auto.addEventListener('click', () => {
-    setInterval(setSeason(), 1000);
+    styleSelector.setStyle('auto');
 })
-
-setSeason();
 
