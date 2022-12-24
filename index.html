@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="SCSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="IMG/clock.ico">
+    
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="snowflakes" aria-hidden="true">
+                <div class="dropdown">
+                    <button onclick="showSettings()" class="dropbtn" id="setButton">
+                    </button>
+                    <ul id="myDropdownlist" class="content-list">
+                        <li id="auto"><a class="link" href='#'>Auto</a></li>
+                        <li id="spring"><a class="link" href='#'>Spring</a></li>
+                        <li id="summer"><a class="link" href='#'>Summer</a></li>
+                        <li id="autumn"><a class="link" href='#'>Autumn</a></li>
+                        <li id="winter"><a class="link" href='#'>Winter</a></li>
+                    </ul>
+                </div>
+                <div id="snowflake">
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake1.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake2.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake3.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake4.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake5.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake6.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake7.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake8.svg">
+                    </div>
+                    <div class="snowflake">
+                        <img src="IMG/Flakes/flake9.svg">
+                    </div>
+                </div>
+                <div class='main'>
+                    <article id="clock_face" class="clock">
+                        <div class="container-hours">
+                            <div class="hours" id="hours"></div>
+                        </div>
+                        <div class="container-minutes">
+                            <div class="minutes" id="minutes"></div>
+                        </div>
+                        <div class="container-seconds">
+                            <div class="seconds season_winter" id="seconds"></div>
+                        </div>
+                    </article>
+                    <div class="dateinf">
+                        <div id="date">
+                            <span class="month"></span>
+                            <span class="number"></span>,
+                            <span class="year"></span>
+                        </div>
+                        <span id="weekday"></span>
+                    </div>
+                    <div class="congrats">
+                        <span class="christmas_congrats"> Merry Christmas and happy New Year!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="sign">© Anastasiia Mazharova, 2022</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="JS/clock.js"> </script>
+</body>

@@ -1,0 +1,520 @@
+//файл обнуляющих стилей
+@import "nullstyle.scss";
+
+//Обнуляем отступы
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    overflow: hidden; //Cкрываем скролл 
+    // background-image: url(../IMG/Background_pic/Winter/winter.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    //&::after{
+    //content: '';
+    //background-image: url(../IMG/Background_pic/Winter/wallpapersden.com_fogy-forest-winter-day_2048x1152.jpg);
+    //background-repeat: no-repeat;
+    //background-size: cover;
+    //opacity: 0.6;
+    //top: 0;
+    //left: 0;
+    //bottom:0;
+    //right:0;
+    //position:absolute;
+    //z-index: -1;
+    //}
+}
+
+.container {
+    min-height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+//Кнопка с меню настроек 
+//Вся область
+.dropdown {
+    padding: 50px 150px 0 0;
+    position: relative;
+    display: flex;
+    align-self: flex-end;
+
+    @media (max-width:815px) {
+        padding: 50px 70px 0 0
+    }
+
+    @media (max-width:550px) {
+        padding: 50px 50px 0 0
+    }
+}
+
+
+//Сама кнопка
+.dropbtn {
+    background: url(../IMG/Icons/settings_winter.svg) 0 0/cover no-repeat;
+    width: 40px;
+    height: 40px;
+    //cursor: pointer;
+    /*&:hover{
+            background:url(../IMG/Icons/🦆\ icon2.svg)0 0/cover no-repeat;
+        }
+        &:focus{
+            background:url(../IMG/Icons/🦆\ icon2.svg)0 0/cover no-repeat;
+        }*/
+}
+
+//Картинка кнопки
+.icon {
+    background: none;
+}
+
+//Выпадающий список
+.content-list {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(40, 73, 113, 0.288);
+    z-index: 1;
+
+}
+
+//Ссылки в списке
+
+.link {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.winter_link {
+    &:hover {
+        color: rgb(29, 74, 141)
+    }
+}
+
+.spring_link {
+    &:hover {
+        color: rgb(77, 29, 129)
+    }
+}
+
+.summer_link {
+    &:hover {
+        color: rgb(133, 32, 32)
+    }
+}
+
+.autumn_link {
+    &:hover {
+        color: rgb(176, 61, 12)
+    }
+}
+
+.christmas_link {
+    &:hover {
+        color: rgb(240, 217, 10)
+    }
+}
+
+//Класс, по которому показывается выпадающий список
+.show {
+    display: block;
+}
+
+//Снежинки
+.snowflakes {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+//Реализация анимации снега
+@keyframes snowflakes-fall {
+    0% {
+        top: -10%
+    }
+
+    100% {
+        top: 100%
+    }
+}
+
+@keyframes snowflakes-shake {
+    0% {
+        transform: translateX(0px);
+        transform: translateX(0px)
+    }
+
+    50% {
+        transform: translateX(80px);
+        transform: translateX(80px)
+    }
+
+    100% {
+        transform: translateX(0px);
+        transform: translateX(0px)
+    }
+}
+
+.snowflake {
+    position: fixed;
+    top: -10%;
+    z-index: 9999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+
+    animation-name: snowflakes-fall, snowflakes-shake;
+    animation-duration: 10s, 8s;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-play-state: running, running;
+}
+
+.snowflake:nth-of-type(0) {
+    left: 1%;
+    animation-delay: 0s, 0s;
+}
+
+.snowflake:nth-of-type(1) {
+    left: 10%;
+    animation-delay: 1s, 1s;
+}
+
+.snowflake:nth-of-type(2) {
+    left: 20%;
+    animation-delay: 6s, .5s;
+}
+
+.snowflake:nth-of-type(3) {
+    left: 30%;
+    animation-delay: 4s, 2s;
+}
+
+.snowflake:nth-of-type(4) {
+    left: 40%;
+    animation-delay: 2s, 2s;
+}
+
+.snowflake:nth-of-type(5) {
+    left: 50%;
+    animation-delay: 8s, 3s;
+}
+
+.snowflake:nth-of-type(6) {
+    left: 60%;
+    animation-delay: 6s, 2s;
+}
+
+.snowflake:nth-of-type(7) {
+    left: 70%;
+    animation-delay: 2.5s, 1s;
+}
+
+.snowflake:nth-of-type(8) {
+    left: 80%;
+    animation-delay: 1s, 0s;
+}
+
+.snowflake:nth-of-type(9) {
+    left: 90%;
+    animation-delay: 3s, 1.5s;
+}
+
+//Оболочка сайта
+.wrapper {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+//Вводим контроль шагов анимации в CSS через правило @keyframes
+@keyframes rotateArms {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.main {
+    padding-top: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+//Циферблат
+.clock {
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../IMG/Icons/clock.svg)0 0/cover no-repeat;
+
+    @media (max-width:450px) {
+        width: 250px;
+        height: 250px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: black;
+        border-radius: 50%;
+        z-index: 10;
+
+        @media (max-width:450px) {
+            width: 7px;
+            height: 7px;
+        }
+    }
+}
+
+.normalcenter_clock {
+    &::before {
+        content: '';
+        background-color: black;
+    }
+}
+
+.christmascenter_clock {
+    &::before {
+        content: '';
+        background-color: #F4D891;
+    }
+}
+
+//Контейнеры стрелок
+.clock .container-hours,
+.clock .container-minutes,
+.clock .container-seconds {
+    position: absolute;
+}
+
+.clock .container-hours,
+.hours {
+    width: 160px;
+    height: 160px;
+
+}
+
+.clock .container-minutes,
+.minutes {
+    width: 190px;
+    height: 190px;
+}
+
+.clock .container-seconds,
+.seconds {
+    width: 230px;
+    height: 230px;
+}
+
+//Окружность стрелок
+.hours,
+.minutes,
+.seconds {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+
+//Добавляем анимацию к секундной стрелке
+.seconds {
+    animation: rotateArms linear 60s infinite;
+}
+
+//Стрелки
+.hours::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 80px;
+    background-color: black;
+    z-index: 7;
+    border-radius: 6px 6px 0 0;
+
+    @media (max-width:450px) {
+        width: 3px;
+        height: 80px;
+    }
+}
+
+.hours_normal {
+    &::before {
+        content: '';
+        background-color: black;
+    }
+}
+
+.hours_christmas {
+    &::before {
+        content: '';
+        background-color: #F4D891;
+    }
+}
+
+.minutes::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 90px;
+    background-color: black;
+    z-index: 8;
+    border-radius: 6px 6px 0 0;
+
+    @media (max-width:450px) {
+        width: 2px;
+        height: 95px;
+    }
+}
+
+.minutes_normal {
+    &::before {
+        content: '';
+        background-color: black;
+    }
+}
+
+.minutes_christmas {
+    &::before {
+        content: '';
+        background-color: #F4D891;
+    }
+}
+
+
+
+.season_winter::before {
+    content: url('../IMG/Arrow_shadow/Frame9.png');
+    position: absolute;
+    width: 2px;
+    height: 250px;
+    //background-color: black;
+    z-index: 9;
+    border-radius: 6px 6px 0 0;
+
+    @media(max-width:678px) {
+        content: url('../IMG/Arrow_shadow/Frame10.png');
+    }
+}
+
+.season_spring::before {
+    content: url('../IMG/Arrow_shadow/Frame_spring2.png');
+    position: absolute;
+    width: 2px;
+    height: 250px;
+    z-index: 9;
+    border-radius: 6px 6px 0 0;
+
+    @media(max-width:678px) {
+        content: url('../IMG/Arrow_shadow/Frame_spring3.png');
+    }
+}
+
+.season_summer::before {
+    content: url('../IMG/Arrow_shadow/Frame_summer1.png');
+    position: absolute;
+    width: 2px;
+    height: 250px;
+    z-index: 9;
+    border-radius: 6px 6px 0 0;
+
+    @media(max-width:678px) {
+        content: url('../IMG/Arrow_shadow/Frame_summer2.png');
+    }
+}
+
+.season_autumn::before {
+    content: url('../IMG/Arrow_shadow/Frame_autumn1.png');
+    position: absolute;
+    width: 2px;
+    height: 250px;
+    z-index: 9;
+    border-radius: 6px 6px 0 0;
+
+    @media(max-width:678px) {
+        content: url('../IMG/Arrow_shadow/Frame_autumn2.png');
+    }
+}
+
+.season_christmas::before {
+    content: url('../IMG/Arrow_shadow/Frame11christmas.png');
+    position: absolute;
+    width: 2px;
+    height: 250px;
+    z-index: 9;
+    border-radius: 6px 6px 0 0;
+
+    @media(max-width:678px) {
+        content: url('../IMG/Arrow_shadow/Frame_christmas2.png');
+    }
+}
+
+//Дата
+.dateinf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    color: black
+}
+
+#date {
+    font-size: 17px;
+}
+
+#weekday {
+    display: block;
+    font-size: 20px;
+}
+
+.congrats {
+    padding-top: 20px;
+    text-align: center;
+
+}
+
+.christmas_congrats {
+    font-size: 28px;
+    color: #F4D891;
+}
+
+
+//Футер
+.footer {
+    flex: 0 0 auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.sign {
+    color: black;
+    padding-bottom: 10px;
+}
